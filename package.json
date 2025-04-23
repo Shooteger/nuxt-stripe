@@ -2,7 +2,10 @@
   "name": "@unlok-co/nuxt-stripe",
   "version": "5.0.0",
   "description": "Nuxt module for stripe",
-  "repository": "https://github.com/fuentesloic/nuxt-stripe",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuentesloic/nuxt-stripe.git"
+  },
   "license": "MIT",
   "type": "module",
   "exports": {
