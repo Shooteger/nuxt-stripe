@@ -1,5 +1,28 @@
 # Changelog
 
+## v5.0.0
+
+[compare changes](https://github.com/fuentesloic/nuxt-stripe/compare/v4.0.2...v5.0.0)
+
+### 🚀 Enhancements
+
+- ⚠️  Upgrade stripe.js major version ([#48](https://github.com/fuentesloic/nuxt-stripe/pull/48))
+
+### 🏡 Chore
+
+- **release:** V4.0.2 ([bb3b217](https://github.com/fuentesloic/nuxt-stripe/commit/bb3b217))
+- **deps-dev:** Bump vitest ([#44](https://github.com/fuentesloic/nuxt-stripe/pull/44))
+- Upgrade package definition ([c20f9b0](https://github.com/fuentesloic/nuxt-stripe/commit/c20f9b0))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Upgrade stripe.js major version ([#48](https://github.com/fuentesloic/nuxt-stripe/pull/48))
+
+### ❤️ Contributors
+
+- Flozero ([@flozero](https://github.com/flozero))
+- Florent Giraud ([@flozero](https://github.com/flozero))
+
 ## v4.0.2
 
 [compare changes](https://github.com/fuentesloic/nuxt-stripe/compare/v4.0.1...v4.0.2)
