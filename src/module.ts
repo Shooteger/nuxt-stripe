@@ -1,5 +1,5 @@
 import { fileURLToPath } from "node:url";
-import { defineNuxtModule, createResolver } from "@nuxt/kit";
+import { defineNuxtModule, createResolver, addTypeTemplate } from "@nuxt/kit";
 import defu from "defu";
 import type Stripe from "stripe";
 
@@ -62,6 +62,12 @@ export default defineNuxtModule<ModuleOptions>({
       dirs.push(resolve(runtimeDir, "composables"));
     });
 
+
+    nuxt.options.typescript.tsConfig.include?.push(
+      './types/types.d.ts'
+    )
+
+
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.alias = nitroConfig.alias || {};
 
@@ -78,10 +84,10 @@ export default defineNuxtModule<ModuleOptions>({
       );
     });
 
-    nuxt.hook("prepare:types", (options) => {
-      options.tsConfig.compilerOptions.paths["#stripe/server"] = [
-        resolve(runtimeDir, "./server/services"),
-      ];
-    });
+    // nuxt.hook("prepare:types", (options) => {
+    //   options.tsConfig.compilerOptions.paths["#stripe/server"] = [
+    //     resolve(runtimeDir, "./server/services"),
+    //   ];
+    // });
   },
 });
