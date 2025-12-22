@@ -1,50 +1,70 @@
 import { loadStripe } from "@stripe/stripe-js";
+import type { Stripe, StripeConstructorOptions } from "@stripe/stripe-js";
+import { useNuxtApp, useState, onMounted } from "#imports";
 
-import type { Stripe } from "@stripe/stripe-js";
-import { onMounted, useNuxtApp, useState } from "#imports";
-import type { ModuleOptions } from "nuxt/schema";
-
-/**
- * useClientStripe function
- *
- * This function is a helper to easily access the Stripe instance provided by the Nuxt plugin.
- * It can be used in components or pages to interact with the Stripe.js library.
- *
- */
 export default function useClientStripe() {
   const nuxtApp = useNuxtApp();
   const stripe = useState<Stripe | null>("stripe-client", () => null);
-  const isLoading = useState("stripe-client-loading", () => false);
+  const isLoading = useState<boolean>("stripe-client-loading", () => false);
 
   async function _loadStripe(
-    key: string | undefined = undefined,
-    options: ModuleOptions["client"]["options"] | undefined = undefined
+    key?: string,
+    options?: StripeConstructorOptions
   ): Promise<Stripe | null> {
-    const _key = key ?? nuxtApp.$config.public.stripe.key;
-    const _options = options ?? nuxtApp.$config.public.stripe.options;
+    const config = nuxtApp.$config.public.stripe;
+    const _key = key ?? config.key;
+    const _options = options ?? config.options;
 
-    if (stripe.value && !nuxtApp.$config.public.stripe.manualClientLoad) {
+    // Return existing instance if already loaded and not in manual mode
+    if (stripe.value && !config.manualClientLoad) {
       return stripe.value;
+    }
+
+    if (!_key) {
+      console.warn("[@unlok-co/nuxt-stripe] No publishable key provided for Stripe client");
+      return null;
+    }
+
+    // Don't start a new load if already loading
+    if (isLoading.value) {
+      // Wait for existing load to complete
+      return new Promise((resolve) => {
+        const checkLoaded = setInterval(() => {
+          if (!isLoading.value) {
+            clearInterval(checkLoaded);
+            resolve(stripe.value);
+          }
+        }, 100);
+      });
     }
 
     isLoading.value = true;
 
-    if (!nuxtApp.$config.public.stripe.key && !key)
-      console.warn("no key given for Stripe client service");
+    try {
+      const _stripe = await loadStripe(_key, _options);
 
-    const _stripe = await loadStripe(_key, _options);
+      isLoading.value = false;
 
-    isLoading.value = false;
-    if (!nuxtApp.$config.public.stripe.manualClientLoad) {
-      stripe.value = _stripe;
+      // Only store in state if not in manual mode
+      if (!config.manualClientLoad) {
+        stripe.value = _stripe;
+      }
+
+      return _stripe;
+    } catch (error) {
+      isLoading.value = false;
+      console.error("[@unlok-co/nuxt-stripe] Failed to load Stripe client:", error);
+      return null;
     }
-    return _stripe;
   }
 
   onMounted(async () => {
-    if (nuxtApp.$config.public.stripe.manualClientLoad) return;
-    if (!isLoading.value) {
-      await _loadStripe(undefined, undefined);
+    const config = nuxtApp.$config.public.stripe;
+    if (config.manualClientLoad) return;
+
+    // Only load if not already loaded or loading
+    if (!stripe.value && !isLoading.value) {
+      await _loadStripe();
     }
   });
 

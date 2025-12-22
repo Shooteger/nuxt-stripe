@@ -1,14 +1,14 @@
 export default defineNuxtConfig({
   modules: ["../src/module"],
-
+  devtools: { enabled: true },
   stripe: {
     client: {
-      key: process.env.STRIPE_PUBLIC_KEY,
+      key: process.env.STRIPE_PUBLISHABLE_KEY,
       manualClientLoad: true,
     },
     server: {
       key: process.env.STRIPE_SECRET_KEY,
     },
   },
-  compatibilityDate: "2024-10-07",
+  compatibilityDate: "2025-12-22",
 });
