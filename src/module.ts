@@ -64,7 +64,7 @@ export default defineNuxtModule<ModuleOptions>({
 
 
     nuxt.options.typescript.tsConfig.include?.push(
-      './types/types.d.ts'
+      './types/stripe-module.d.ts'
     )
 
     nuxt.hook("nitro:config", (nitroConfig) => {
