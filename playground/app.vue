@@ -28,7 +28,7 @@ stripe.value = await loadStripe(nuxtApp.$config.public.stripe.key);
 <style>
 html {
   background-color: #222;
-  color: #0b0808;
+  color: #ffff;
   font-family: sans-serif;
   font-size: 1rem;
   margin: 1rem;
