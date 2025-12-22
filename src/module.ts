@@ -67,7 +67,6 @@ export default defineNuxtModule<ModuleOptions>({
       './types/types.d.ts'
     )
 
-
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.alias = nitroConfig.alias || {};
 
@@ -83,11 +82,5 @@ export default defineNuxtModule<ModuleOptions>({
         "./server/services"
       );
     });
-
-    // nuxt.hook("prepare:types", (options) => {
-    //   options.tsConfig.compilerOptions.paths["#stripe/server"] = [
-    //     resolve(runtimeDir, "./server/services"),
-    //   ];
-    // });
   },
 });
