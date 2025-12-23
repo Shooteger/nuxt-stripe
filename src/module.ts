@@ -1,5 +1,5 @@
 import { fileURLToPath } from "node:url";
-import { defineNuxtModule, createResolver, addTypeTemplate } from "@nuxt/kit";
+import { defineNuxtModule, createResolver } from "@nuxt/kit";
 import defu from "defu";
 import type Stripe from "stripe";
 
