@@ -1,5 +1,24 @@
 # Changelog
 
+## v6.0.1
+
+[compare changes](https://github.com/fuentesloic/nuxt-stripe/compare/v5.0.0...v6.0.1)
+
+### 🩹 Fixes
+
+- Tsconfig conflicts ([#60](https://github.com/fuentesloic/nuxt-stripe/pull/60))
+
+### 🏡 Chore
+
+- **release:** V5.0.0 ([73fea0f](https://github.com/fuentesloic/nuxt-stripe/commit/73fea0f))
+- Upgrade package definition ([a6c1d2b](https://github.com/fuentesloic/nuxt-stripe/commit/a6c1d2b))
+- Remove unuse files ([c686ddf](https://github.com/fuentesloic/nuxt-stripe/commit/c686ddf))
+
+### ❤️ Contributors
+
+- Flozero ([@flozero](https://github.com/flozero))
+- Florent Giraud ([@flozero](https://github.com/flozero))
+
 ## v5.0.0
 
 [compare changes](https://github.com/fuentesloic/nuxt-stripe/compare/v4.0.2...v5.0.0)
