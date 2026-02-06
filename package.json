@@ -1,7 +1,7 @@
 {
   "name": "@unlok-co/nuxt-stripe",
-  "version": "6.0.1",
-  "description": "Nuxt module for stripe",
+  "version": "6.1.0",
+  "description": "Nuxt 4 module for stripe",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fuentesloic/nuxt-stripe.git"
@@ -40,27 +40,27 @@
   },
   "dependencies": {
     "@jest/globals": "^30.2.0",
-    "@nuxt/kit": "^4.2.2",
-    "@stripe/stripe-js": "^8.6.0",
+    "@nuxt/kit": "^4.3.0",
+    "@stripe/stripe-js": "^8.7.0",
     "defu": "^6.1.4",
-    "stripe": "^20.1.0"
+    "stripe": "^20.3.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
+    "@commitlint/prompt-cli": "^20.4.1",
     "@nuxt/devtools": "3.1.1",
-    "@commitlint/cli": "^20.2.0",
-    "@commitlint/config-conventional": "^20.2.0",
-    "@commitlint/prompt-cli": "^20.2.0",
-    "@nuxt/eslint-config": "^1.12.1",
+    "@nuxt/eslint-config": "^1.13.0",
     "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.2.2",
-    "@nuxt/test-utils": "^3.21.0",
-    "@types/node": "^22.19.3",
+    "@nuxt/schema": "^4.3.0",
+    "@nuxt/test-utils": "^3.23.0",
+    "@types/node": "^22.19.9",
     "changelogen": "^0.6.2",
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.3.0",
     "typescript": "~5.9.3",
-    "vue-tsc": "^3.1.8",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.18",
+    "vue-tsc": "^3.2.4"
   }
 }
