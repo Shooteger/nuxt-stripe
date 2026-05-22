@@ -1,4 +1,20 @@
 
+## v2.0.1
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.0...v2.0.1)
+
+### 📖 Documentation
+
+- Fix docs grammar ([c3db8dc](https://github.com/Shooteger/nuxt-stripe/commit/c3db8dc))
+
+### 🏡 Chore
+
+- Bump package-lock.json to v2.0.0 ([933a7d3](https://github.com/Shooteger/nuxt-stripe/commit/933a7d3))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+
 ## v2.0.0
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v1.1.1...v2.0.0)
