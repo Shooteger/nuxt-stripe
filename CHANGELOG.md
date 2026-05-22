@@ -1,4 +1,20 @@
 
+## v2.0.2
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.1...v2.0.2)
+
+### 🩹 Fixes
+
+- Correct env var names in README (NUXT_STRIPE_SECRET_KEY / NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) ([f9b058f](https://github.com/Shooteger/nuxt-stripe/commit/f9b058f))
+
+### 🏡 Chore
+
+- Bump package-lock.json to v2.0.1 ([9790449](https://github.com/Shooteger/nuxt-stripe/commit/9790449))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+
 ## v2.0.1
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.0...v2.0.1)
