@@ -3,12 +3,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   stripe: {
     client: {
-      key: process.env.STRIPE_PUBLISHABLE_KEY,
       manualClientLoad: true,
     },
-    server: {
-      key: process.env.STRIPE_SECRET_KEY,
-    },
+    server: {},
   },
   compatibilityDate: "2026-05-22",
 });

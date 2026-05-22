@@ -8,15 +8,14 @@ export default defineEventHandler(async (event) => {
   //
   // [0] https://stripe.com/docs/api/payment_intents/create
   const stripe = useServerStripe(event);
-  const orderAmount = 1400;
-  let paymentIntent;
 
   try {
-    paymentIntent = await stripe.paymentIntents.create({
-      currency: "usd",
-      amount: orderAmount,
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: "eur",
+      amount: 2500, // €25.00
       automatic_payment_methods: { enabled: true },
     });
+
     return {
       clientSecret: paymentIntent.client_secret,
       error: null,

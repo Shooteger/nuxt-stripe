@@ -1,15 +1,14 @@
-# @shooteger/nuxt-stripe
+# A Nuxt 3/4 module for integrating Stripe
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A Nuxt 3/4 module for integrating Stripe into your application. 
-Use `useServerStripe(event)` in your server routes and `useClientStripe()` on the client. `@stripe/stripe-js` is optional and only needed if you use Stripe Elements or client-side UI.
+With this Nuxt module you can use strip easily in your client or server side. Use `useServerStripe(event)` in your server routes and `useClientStripe()` on the client. `@stripe/stripe-js` is optional and only needed if you use Stripe Elements or client-side UI.
 
-[✨ Release Notes](/CHANGELOG.md)
-
+[Release Notes](/CHANGELOG.md) -
+[Online playground](https://stackblitz.com/github/Shooteger/nuxt-stripe?file=playground%2Fapp.vue)
 
 ## Features
 
@@ -19,10 +18,9 @@ Use `useServerStripe(event)` in your server routes and `useClientStripe()` on th
 - **TypeScript first** — full types for both server and client
 - **Nuxt 3 and 4 compatible** — Minimum Nuxt version is 3.1.0
 
-
 ## Installation
 
-One of the changes over the original fork  is, that this module uses stripe packages as **peer dependencies**, which gives you full control over which Stripe versions you use and avoids duplicate instances in your project.
+One of the changes over the original fork is, that this module uses stripe packages as **peer dependencies**, which gives you full control over which Stripe versions you use and avoids duplicate instances in your project.
 
 ```bash
 # Server + client side (Stripe Elements, client-side UI)
@@ -38,55 +36,64 @@ Add the module to your `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@shooteger/nuxt-stripe'],
-})
+  modules: ["@shooteger/nuxt-stripe"],
+});
 ```
 
 ## Configuration
+
+### Environment Variables
+
+The recommended way to configure keys is via environment variables:
+
+```env
+NUXT_STRIPE_KEY=sk_test_...
+NUXT_PUBLIC_STRIPE_KEY=pk_test_...
+```
+
+Nuxt picks these up automatically via its [runtime config](https://nuxt.com/docs/guide/going-further/runtime-config) convention.
 
 ### Via module options
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@shooteger/nuxt-stripe'],
+  modules: ["@shooteger/nuxt-stripe"],
   stripe: {
     server: {
-      key: process.env.STRIPE_SECRET_KEY,
+      // key is read from NUXT_STRIPE_SECRET_KEY automatically
       options: {
-        // Stripe Node.js SDK options
         // https://github.com/stripe/stripe-node#configuration
       },
     },
     client: {
-      key: process.env.STRIPE_PUBLISHABLE_KEY,
+      // key is read from NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY automatically
       options: {
-        // Stripe.js options
         // https://stripe.com/docs/js/initializing#init_stripe_js-options
       },
       // manualClientLoad: true, // disable auto-load on mount
     },
   },
-})
+});
 ```
 
 ### Via Runtime Config
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@shooteger/nuxt-stripe'],
+  modules: ["@shooteger/nuxt-stripe"],
   runtimeConfig: {
     stripe: {
-      key: process.env.STRIPE_SECRET_KEY,
+      key: "", // NUXT_STRIPE_SECRET_KEY
       options: {},
     },
     public: {
       stripe: {
-        key: process.env.STRIPE_PUBLISHABLE_KEY,
+        key: "", // NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
         options: {},
       },
     },
   },
-})
+});
 ```
 
 ## Usage
@@ -97,30 +104,30 @@ Use `useServerStripe(event)` inside any server route or API handler. The Stripe 
 
 ```ts
 // server/api/payment-intent.get.ts
-import { defineEventHandler } from 'h3'
-import { useServerStripe } from '#stripe/server'
+import { defineEventHandler } from "h3";
+import { useServerStripe } from "#stripe/server";
 
 export default defineEventHandler(async (event) => {
-  const stripe = useServerStripe(event)
+  const stripe = useServerStripe(event);
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      currency: 'eur',
+      currency: "eur",
       amount: 2500, // €25.00
       automatic_payment_methods: { enabled: true },
-    })
+    });
 
     return {
       clientSecret: paymentIntent.client_secret,
       error: null,
-    }
+    };
   } catch (e) {
     return {
       clientSecret: null,
       error: e,
-    }
+    };
   }
-})
+});
 ```
 
 ### Client side
@@ -129,7 +136,7 @@ export default defineEventHandler(async (event) => {
 
 ```vue
 <script setup lang="ts">
-const { stripe, isLoading } = useClientStripe()
+const { stripe, isLoading } = useClientStripe();
 </script>
 
 <template>
@@ -140,11 +147,11 @@ const { stripe, isLoading } = useClientStripe()
 
 The composable returns:
 
-| Property | Type | Description |
-|---|---|---|
-| `stripe` | `Ref<Stripe \| null>` | The Stripe.js instance |
-| `isLoading` | `Ref<boolean>` | Whether Stripe is currently loading |
-| `loadStripe` | `Function` | Manually trigger Stripe load |
+| Property     | Type                  | Description                         |
+| ------------ | --------------------- | ----------------------------------- |
+| `stripe`     | `Ref<Stripe \| null>` | The Stripe.js instance              |
+| `isLoading`  | `Ref<boolean>`        | Whether Stripe is currently loading |
+| `loadStripe` | `Function`            | Manually trigger Stripe load        |
 
 #### Manual load
 
@@ -161,27 +168,27 @@ stripe: {
 ```
 
 ```ts
-const { loadStripe, stripe } = useClientStripe()
+const { loadStripe, stripe } = useClientStripe();
 
 // Load only when needed
-await loadStripe()
+await loadStripe();
 ```
 
 #### Full payment flow example
 
 ```vue
 <script setup lang="ts">
-const { stripe } = useClientStripe()
+const { stripe } = useClientStripe();
 
 watch(stripe, async () => {
-  if (!stripe.value) return
+  if (!stripe.value) return;
 
-  const { clientSecret } = await $fetch('/api/payment-intent')
+  const { clientSecret } = await $fetch("/api/payment-intent");
 
-  const elements = stripe.value.elements({ clientSecret })
-  const paymentElement = elements.create('payment')
-  paymentElement.mount('#payment-element')
-})
+  const elements = stripe.value.elements({ clientSecret });
+  const paymentElement = elements.create("payment");
+  paymentElement.mount("#payment-element");
+});
 </script>
 ```
 
@@ -215,6 +222,7 @@ npm run release
 [MIT](./LICENCE) — Originally forked from [`@unlok-co/nuxt-stripe`](https://www.npmjs.com/package/@unlok-co/nuxt-stripe) by [`flozero`](https://github.com/flozero/nuxt-stripe), now partly rewritten and independently maintained.
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@shooteger/nuxt-stripe/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/@shooteger/nuxt-stripe
 [npm-downloads-src]: https://img.shields.io/npm/dm/@shooteger/nuxt-stripe.svg?style=flat&colorA=18181B&colorB=28CF8D

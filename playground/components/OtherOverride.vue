@@ -1,9 +1,7 @@
 <template>
   <section>
     <h2>Stripe client OtherOverride</h2>
-    <code>
-        {{ stripeOverride ? stripeOverride : "Loading..." }}
-      </code>
+    <code>{{ stripeOverride ? "loaded" : "Loading..." }}</code>
   </section>
 </template>
 
@@ -16,6 +14,7 @@ const { loadStripe } = useClientStripe();
 const stripeOverride = ref<Stripe | null>(null);
 
 onMounted(async () => {
-  stripeOverride.value = await loadStripe("key_override");
+  // Override with a different publishable key than the one configured globally
+  stripeOverride.value = await loadStripe("pk_test_override");
 });
 </script>

@@ -17,14 +17,15 @@ export const useServerStripe = (event: H3Event): Stripe => {
     return event.context._stripe
   }
 
-  const { stripe: { key, options } } = useRuntimeConfig(event)
+  const { stripe: { secretKey, options } } = useRuntimeConfig(event)
 
-  if (!key) {
-    console.warn('[@shooteger/nuxt-stripe] No secret key configured for Stripe server.')
+  if (!secretKey) {
+    console.warn('[@shooteger/nuxt-stripe] No secret key configured. Set NUXT_STRIPE_SECRET_KEY in your .env')
   }
 
+
   // @docs — https://stripe.com/docs/api/versioning
-  const stripe = new Stripe(key, options)
+  const stripe = new Stripe(secretKey, options)
 
   // Store the initialized Stripe instance in the event context for future use
   event.context._stripe = stripe

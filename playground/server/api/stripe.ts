@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
   console.info('Stripe instance:', stripe)
 
   return {
-    message: 'Inspect your terminal to see stripe server object',
+    version: stripe.VERSION,
+    message: 'Inspect your terminal to see the full Stripe server object',
   }
 })

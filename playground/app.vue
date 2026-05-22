@@ -2,11 +2,12 @@
   <main>
     <h1>Nuxt - Stripe module playground</h1>
     <section class="section">
-      <h2>Stripe client app.vue</h2>
+      <h2>Stripe client — app.vue (manual load)</h2>
       <ClientOnly>
-        <code>
-        {{ stripe ? "loaded" : "Loading..." }}
-      </code>
+        <code>{{ stripe ? "Stripe loaded" : "Loading..." }}</code>
+        <template #fallback>
+          <code>⏳ SSR — client not loaded yet</code>
+        </template>
       </ClientOnly>
     </section>
     <OtherComponent class="section" />
@@ -17,20 +18,20 @@
 <script setup lang="ts">
 import { useNuxtApp, useClientStripe } from "#imports";
 
-// As we have defined manualClientLoad: true in the module options, we need to manually load the stripe client
-// That means you have to setup the stripe client in the root component of your app
-// This let you have multiple stripe clients in your app and not rely on the module to load the client
+// manualClientLoad: true is set in nuxt.config.ts
+// This means we control when and where Stripe loads instead of auto-loading on mount
 const { loadStripe, stripe } = useClientStripe();
 const nuxtApp = useNuxtApp();
 
-// you can leave loadStripe() empty, if you already have defined the keys in the config or override like in this example
-stripe.value = await loadStripe(nuxtApp.$config.public.stripe.key);
+// Pass publishableKey explicitly here since manualClientLoad bypasses auto-config
+// Remove the argument to use NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY from .env automatically
+stripe.value = await loadStripe(nuxtApp.$config.public.stripe.publishableKey);
 </script>
 
 <style>
 html {
   background-color: #222;
-  color: #ffff;
+  color: #fff;
   font-family: sans-serif;
   font-size: 1rem;
   margin: 1rem;

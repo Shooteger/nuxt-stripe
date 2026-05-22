@@ -5,10 +5,10 @@ export default defineNuxtConfig({
   ],
   stripe: {
     client: {
-      key: 'pk_test123',
+      publishableKey: 'pk_test123',
     },
     server: {
-      key: 'sk_test123',
+      secretKey: 'sk_test123',
     },
   },
 })

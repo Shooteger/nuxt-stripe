@@ -8,13 +8,14 @@ import type { NitroOptions } from 'nitropack'
 type StripeConfig = ConstructorParameters<typeof Stripe>[1];
 
 export interface ServerStripeOptions {
-  key?: string | null;
+  secretKey?: string;
   options?: StripeConfig;
 }
 
 export interface ClientStripeOptions {
-  key?: string | null;
+  publishableKey?: string;
   options?: StripeConstructorOptions;
+  manualClientLoad?: boolean;
 }
 
 export interface ModuleOptions {
@@ -31,8 +32,8 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {
-    server: { key: null, options: {} },
-    client: { manualClientLoad: false, key: null, options: {} },
+    server: { secretKey: '', options: {} },
+    client: { manualClientLoad: false, publishableKey: '', options: {} },
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
@@ -54,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
       dirs.push(resolve(runtimeDir, "composables"));
     });
 
-    nuxt.options.typescript.tsConfig.include?.push('./types/stripe-module.d.ts');
+    nuxt.options.typescript.tsConfig.include?.push('./types/stripe-module.d.ts')
 
     // @ts-expect-error - nitro:config not in NuxtHooks type but exists at runtime
     nuxt.hook('nitro:config', (nitroConfig: NitroOptions) => {

@@ -3,7 +3,7 @@ import { useNuxtApp, useState } from "nuxt/app";
 import { onMounted } from "vue";
 
 interface ClientStripeConfig {
-  key?: string | null
+  publishableKey?: string
   options?: StripeConstructorOptions
   manualClientLoad?: boolean
 }
@@ -28,7 +28,7 @@ export default function useClientStripe() {
     }
 
     const config = nuxtApp.$config.public.stripe as ClientStripeConfig;
-    const _key = key ?? config.key;
+    const _key = key ?? config.publishableKey;
     const _options = options ?? config.options;
 
     if (stripe.value && !config.manualClientLoad) {
@@ -36,7 +36,7 @@ export default function useClientStripe() {
     }
 
     if (!_key) {
-      console.warn("[@shooteger/nuxt-stripe] No publishable key provided for Stripe client");
+      console.warn("[@shooteger/nuxt-stripe] No publishable key provided. Set NUXT_PUBLIC_STRIPE_KEY in your .env");
       return null;
     }
 

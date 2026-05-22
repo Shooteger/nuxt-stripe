@@ -7,14 +7,14 @@ declare module 'h3' {
 declare module 'nuxt/schema' {
   interface RuntimeConfig {
     stripe: {
-      key: string
+      secretKey: string
       options: ConstructorParameters<typeof import('stripe').default>[1]
     }
   }
 
   interface PublicRuntimeConfig {
     stripe: {
-      key: string
+      publishableKey: string
       options?: import('@stripe/stripe-js').StripeConstructorOptions
       manualClientLoad?: boolean
     }
