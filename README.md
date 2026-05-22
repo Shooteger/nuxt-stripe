@@ -19,7 +19,6 @@ Use `useServerStripe(event)` in your server routes and `useClientStripe()` on th
 - **TypeScript first** — full types for both server and client
 - **Nuxt 3 and 4 compatible** — Minimum Nuxt version is 3.1.0
 
----
 
 ## Installation
 
@@ -42,8 +41,6 @@ export default defineNuxtConfig({
   modules: ['@shooteger/nuxt-stripe'],
 })
 ```
-
----
 
 ## Configuration
 
@@ -91,8 +88,6 @@ export default defineNuxtConfig({
   },
 })
 ```
-
----
 
 ## Usage
 
@@ -190,8 +185,6 @@ watch(stripe, async () => {
 </script>
 ```
 
----
-
 ## Development
 
 ```bash
@@ -217,11 +210,9 @@ npm run lint
 npm run release
 ```
 
----
-
 ## License
 
-[MIT](./LICENSE) — Originally forked from [`@unlok-co/nuxt-stripe`](https://www.npmjs.com/package/@unlok-co/nuxt-stripe) by [`flozero`](https://github.com/flozero/nuxt-stripe), now partly rewritten and independently maintained.
+[MIT](./LICENCE) — Originally forked from [`@unlok-co/nuxt-stripe`](https://www.npmjs.com/package/@unlok-co/nuxt-stripe) by [`flozero`](https://github.com/flozero/nuxt-stripe), now partly rewritten and independently maintained.
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/@shooteger/nuxt-stripe/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
