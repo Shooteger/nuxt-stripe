@@ -27,7 +27,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: "@shooteger/nuxt-stripe",
     configKey: "stripe",
     compatibility: {
-      nuxt: ">=3.0.0",
+      nuxt: ">=3.1.0",
     },
   },
   defaults: {

@@ -1,7 +1,12 @@
-import { loadStripe } from "@stripe/stripe-js";
 import type { Stripe, StripeConstructorOptions } from "@stripe/stripe-js";
 import { useNuxtApp, useState } from "nuxt/app";
 import { onMounted } from "vue";
+
+interface ClientStripeConfig {
+  key?: string | null
+  options?: StripeConstructorOptions
+  manualClientLoad?: boolean
+}
 
 export default function useClientStripe() {
   const nuxtApp = useNuxtApp();
@@ -12,7 +17,17 @@ export default function useClientStripe() {
     key?: string,
     options?: StripeConstructorOptions
   ): Promise<Stripe | null> {
-    const config = nuxtApp.$config.public.stripe;
+    // Safety net — @stripe/stripe-js is an optional peer dependency
+    let loadStripe: typeof import("@stripe/stripe-js").loadStripe;
+    try {
+      const stripeJs = await import("@stripe/stripe-js");
+      loadStripe = stripeJs.loadStripe;
+    } catch {
+      console.error("[@shooteger/nuxt-stripe] @stripe/stripe-js is not installed. Install it to use useClientStripe().");
+      return null;
+    }
+
+    const config = nuxtApp.$config.public.stripe as ClientStripeConfig;
     const _key = key ?? config.key;
     const _options = options ?? config.options;
 
@@ -55,7 +70,7 @@ export default function useClientStripe() {
   }
 
   onMounted(async () => {
-    const config = nuxtApp.$config.public.stripe;
+    const config = nuxtApp.$config.public.stripe as ClientStripeConfig;
     if (config.manualClientLoad) return;
 
     if (!stripe.value && !isLoading.value) {

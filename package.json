@@ -47,6 +47,11 @@
     "stripe": ">=17.0.0",
     "@stripe/stripe-js": ">=5.0.0"
   },
+  "peerDependenciesMeta": {
+    "@stripe/stripe-js": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.4",
     "@nuxt/eslint-config": "^1.15.2",

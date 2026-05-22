@@ -5,15 +5,11 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-A Nuxt 3/4 module for integrating Stripe into your application and lets you use stripe with a server and client side composable.
+A Nuxt 3/4 module for integrating Stripe into your application. 
+Use `useServerStripe(event)` in your server routes and `useClientStripe()` on the client. `@stripe/stripe-js` is optional and only needed if you use Stripe Elements or client-side UI.
 
-Uses the official [`stripe`](https://www.npmjs.com/package/stripe) package for server-side usage and [`@stripe/stripe-js`](https://www.npmjs.com/package/@stripe/stripe-js) for the client side.
+[✨ Release Notes](/CHANGELOG.md)
 
-- [✨ Release Notes](/CHANGELOG.md)
-
-> **Note:** This module is a maintained fork of the now-archived [`@unlok-co/nuxt-stripe`](https://www.npmjs.com/package/@unlok-co/nuxt-stripe). The original author archived the repository and stopped maintenance. This fork clears the history, uses up-to-date Stripe packages, fixes several issues, and is actively maintained.
-
----
 
 ## Features
 
@@ -21,7 +17,7 @@ Uses the official [`stripe`](https://www.npmjs.com/package/stripe) package for s
 - **Client-side Stripe** via `useClientStripe()` — wraps `loadStripe` with auto-load or manual mode
 - **Runtime config support** — configure via module options or `runtimeConfig`
 - **TypeScript first** — full types for both server and client
-- **Nuxt 3 and 4 compatible**
+- **Nuxt 3 and 4 compatible** — Minimum Nuxt version is 3.1.0
 
 ---
 
@@ -30,11 +26,14 @@ Uses the official [`stripe`](https://www.npmjs.com/package/stripe) package for s
 One of the changes over the original fork  is, that this module uses stripe packages as **peer dependencies**, which gives you full control over which Stripe versions you use and avoids duplicate instances in your project.
 
 ```bash
-# Install the module and its peer dependencies
+# Server + client side (Stripe Elements, client-side UI)
 npm install @shooteger/nuxt-stripe stripe @stripe/stripe-js
+
+# Server side only (webhooks, payment intents, checkout sessions, ...)
+npm install @shooteger/nuxt-stripe stripe
 ```
 
-> **Peer dependency versions:** `stripe >= 17.0.0` and `@stripe/stripe-js >= 5.0.0` are supported.
+> **Peer dependency versions:** Both stripe and @stripe/stripe-js are peer dependencies — you control which versions you use and avoid duplicate instances in your project. stripe >= 17.0.0 and @stripe/stripe-js >= 5.0.0 are supported. @stripe/stripe-js is fully optional and only needed for client-side usage.
 
 Add the module to your `nuxt.config.ts`:
 
