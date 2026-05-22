@@ -1,4 +1,16 @@
 
+## v1.1.1
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v1.1.0...v1.1.1)
+
+### 🩹 Fixes
+
+- Correct LICENCE filename and styles in README link ([75b34fd](https://github.com/Shooteger/nuxt-stripe/commit/75b34fd))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+
 ## v1.1.0
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v1.0.1...v1.1.0)
