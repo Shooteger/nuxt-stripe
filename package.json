@@ -1,7 +1,7 @@
 {
   "name": "@shooteger/nuxt-stripe",
   "version": "1.0.0",
-  "description": "Nuxt 4.x module for stripe",
+  "description": "Nuxt 3/4 module for stripe",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shooteger/nuxt-stripe.git"
