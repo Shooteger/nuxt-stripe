@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-stripe",
+  "name": "@shooteger/nuxt-stripe",
   "version": "1.0.0",
   "description": "Nuxt 4.x module for stripe",
   "repository": {
