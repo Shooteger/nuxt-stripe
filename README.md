@@ -5,7 +5,7 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-With this Nuxt module you can use strip easily in your client or server side. Use `useServerStripe(event)` in your server routes and `useClientStripe()` on the client. `@stripe/stripe-js` is optional and only needed if you use Stripe Elements or client-side UI.
+With this Nuxt module you can use Stripe easily in your client or server side. Use `useServerStripe(event)` in your server routes and `useClientStripe()` on the client. `@stripe/stripe-js` is optional and only needed if you use Stripe Elements or client-side UI.
 
 [Release Notes](/CHANGELOG.md) -
 [Online playground](https://stackblitz.com/github/Shooteger/nuxt-stripe?file=playground%2Fapp.vue)
