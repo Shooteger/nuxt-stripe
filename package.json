@@ -1,0 +1,68 @@
+{
+  "name": "nuxt-stripe",
+  "version": "1.0.0",
+  "description": "Nuxt 4.x module for stripe",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shooteger/nuxt-stripe.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "workspaces": [
+    "playground"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "npm run dev:prepare && nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare test/fixtures/basic",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "nuxi prepare test/fixtures/basic && vitest run",
+    "test:watch": "nuxi prepare test/fixtures/basic && vitest watch",
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "defu": "^6.1.7"
+  },
+  "peerDependencies": {
+    "nuxt": ">=3.1.0",
+    "stripe": ">=17.0.0",
+    "@stripe/stripe-js": ">=5.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^3.2.4",
+    "@nuxt/eslint-config": "^1.15.2",
+    "@nuxt/kit": "^4.4.6",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.4.6",
+    "@nuxt/test-utils": "^4.0.3",
+    "@stripe/stripe-js": "^9.6.0",
+    "@types/node": "^22.19.9",
+    "changelogen": "^0.6.2",
+    "eslint": "^10.3.0",
+    "nuxt": "^4.4.6",
+    "stripe": "^22.1.1",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.5",
+    "vue": "^3.5.0",
+    "vue-tsc": "^3.2.8"
+  }
+}
