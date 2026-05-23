@@ -8,7 +8,7 @@ interface ClientStripeConfig {
   manualClientLoad?: boolean
 }
 
-export default function useClientStripe() {
+export function useClientStripe() {
   const nuxtApp = useNuxtApp();
   const stripe = useState<Stripe | null>("stripe-client", () => null);
   const isLoading = useState<boolean>("stripe-client-loading", () => false);
@@ -36,7 +36,7 @@ export default function useClientStripe() {
     }
 
     if (!_key) {
-      console.warn("[@shooteger/nuxt-stripe] No publishable key provided. Set NUXT_PUBLIC_STRIPE_KEY in your .env");
+      console.warn("[@shooteger/nuxt-stripe] No publishable key provided. Set NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY in your .env");
       return null;
     }
 
