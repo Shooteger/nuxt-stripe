@@ -1,11 +1,36 @@
 {
   "name": "@shooteger/nuxt-stripe",
   "version": "2.0.2",
-  "description": "Nuxt 3/4 module for stripe",
+  "description": "Stripe integration for Nuxt 3 & 4 — server-side and client-side composables for payments, Checkout, and Connect",
+  "author": {
+    "name": "Maurice Shooteger",
+    "url": "https://github.com/Shooteger"
+  },
+  "homepage": "https://github.com/Shooteger/nuxt-stripe#readme",
+  "bugs": {
+    "url": "https://github.com/Shooteger/nuxt-stripe/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shooteger/nuxt-stripe.git"
   },
+  "keywords": [
+    "nuxt",
+    "nuxt3",
+    "nuxt4",
+    "nuxt-module",
+    "stripe",
+    "stripe-js",
+    "payments",
+    "vue",
+    "vue3",
+    "composable",
+    "server-side",
+    "checkout",
+    "payment-intent",
+    "stripe-connect",
+    "nuxt-modules"
+  ],
   "license": "MIT",
   "type": "module",
   "exports": {
