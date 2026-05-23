@@ -1,4 +1,20 @@
 
+## v2.0.3
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.2...v2.0.3)
+
+### 📖 Documentation
+
+- Fix incorrect config key in client setup example ([4cb27fe](https://github.com/Shooteger/nuxt-stripe/commit/4cb27fe))
+
+### 🏡 Chore
+
+- Improve package.json metadata ([eb85211](https://github.com/Shooteger/nuxt-stripe/commit/eb85211))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+
 ## v2.0.2
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.1...v2.0.2)
