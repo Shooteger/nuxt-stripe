@@ -1,4 +1,28 @@
 
+## v2.1.0
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.3...v2.1.0)
+
+### 🚀 Enhancements
+
+- Re-export Stripe types from module entry point ([3c0997f](https://github.com/Shooteger/nuxt-stripe/commit/3c0997f))
+
+### 🩹 Fixes
+
+- **useClientStripe:** Named export and correct env var in warning ([e424095](https://github.com/Shooteger/nuxt-stripe/commit/e424095))
+
+### 🏡 Chore
+
+- Improve package.json metadata ([99c8b37](https://github.com/Shooteger/nuxt-stripe/commit/99c8b37))
+
+### ✅ Tests
+
+- Add payment intent endpoint to fixture and error handling test ([4e92b56](https://github.com/Shooteger/nuxt-stripe/commit/4e92b56))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+
 ## v2.0.3
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.2...v2.0.3)
