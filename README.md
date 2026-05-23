@@ -18,6 +18,22 @@ With this Nuxt module you can use Stripe easily in your client or server side. U
 - **TypeScript first** — full types for both server and client
 - **Nuxt 3 and 4 compatible** — Minimum Nuxt version is 3.1.0
 
+## TypeScript
+
+All Stripe types are re-exported directly from this module. No need to import from `stripe` or `@stripe/stripe-js` separately:
+
+```ts
+import type { ServerStripe, Stripe, StripeElements } from '@shooteger/nuxt-stripe'
+```
+
+| Type | Source | Description |
+| --- | --- | --- |
+| `ServerStripe` | `stripe` | Server-side Stripe instance (aliased to avoid collision with client `Stripe`) |
+| `Stripe` | `@stripe/stripe-js` | Client-side Stripe.js instance |
+| `StripeElements` | `@stripe/stripe-js` | Stripe Elements container |
+| `StripeElement` | `@stripe/stripe-js` | Individual Stripe Element |
+| `StripePaymentElement` | `@stripe/stripe-js` | Payment Element specifically |
+
 ## Installation
 
 One of the changes over the original fork is, that this module uses stripe packages as **peer dependencies**, which gives you full control over which Stripe versions you use and avoids duplicate instances in your project.

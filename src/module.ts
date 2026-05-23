@@ -68,3 +68,5 @@ export default defineNuxtModule<ModuleOptions>({
     });
   },
 });
+
+export * from './types'

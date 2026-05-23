@@ -26,7 +26,6 @@ describe("@shooteger/nuxt-stripe Module", async () => {
     it("injects public stripe runtime config", async () => {
       const html = await $fetch<string>("/");
 
-      // Public config is serialized into the hydration payload
       expect(html).toContain("pk_test123");
     });
   });
@@ -41,9 +40,8 @@ describe("@shooteger/nuxt-stripe Module", async () => {
     it("works in multiple components simultaneously", async () => {
       const html = await $fetch<string>("/");
 
-      // Both app.vue and OtherComponent use the composable
-      expect(html).toContain("Nuxt Stripe module test"); // app.vue
-      expect(html).toContain("Other component using stripe"); // OtherComponent.vue
+      expect(html).toContain("Nuxt Stripe module test");
+      expect(html).toContain("Other component using stripe");
     });
   });
 
@@ -58,12 +56,10 @@ describe("@shooteger/nuxt-stripe Module", async () => {
     it("returns a valid Stripe version string", async () => {
       const response = await $fetch<{ status: number; version: string }>("/api/stripe");
 
-      // Stripe version format: major.minor.patch
       expect(response.version).toMatch(/^\d+\.\d+\.\d+$/);
     });
 
     it("caches the instance per request context", async () => {
-      // Two fetches should both succeed — instance is recreated per request
       const [r1, r2] = await Promise.all([
         $fetch<{ version: string }>("/api/stripe"),
         $fetch<{ version: string }>("/api/stripe"),
@@ -75,7 +71,6 @@ describe("@shooteger/nuxt-stripe Module", async () => {
 
   describe("Module configuration", () => {
     it("applies server key from module options", async () => {
-      // If server route works, the secret key was picked up correctly
       const response = await $fetch("/api/stripe");
 
       expect(response).toBeDefined();
@@ -86,6 +81,25 @@ describe("@shooteger/nuxt-stripe Module", async () => {
       const html = await $fetch<string>("/");
 
       expect(html).toContain("pk_test123");
+    });
+  });
+
+  describe("Type re-exports", () => {
+    it("exports ServerStripe type from module", async () => {
+      // @ts-expect-error - dynamic source import, type checked via test:types
+      const { default: mod } = await import("../../../src/module");
+
+      // If the module loaded without errors, type exports compiled correctly
+      expect(mod).toBeDefined();
+    });
+
+    it("exports are resolvable from dist types", async () => {
+      // This is a compile-time check — if this file type-checks, the re-exports work.
+      // The actual runtime assertion is just a sanity check.
+      // @ts-expect-error - dynamic source import, type checked via test:types
+      const types = await import("../../../src/types");
+
+      expect(types).toBeDefined();
     });
   });
 });

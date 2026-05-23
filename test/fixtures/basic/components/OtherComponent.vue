@@ -1,3 +1,8 @@
+<script setup lang="ts">
+const { stripe, isLoading, loadStripe } = useClientStripe()
+</script>
+
+
 <template>
   <div>Other component using stripe</div>
   <section>
@@ -11,8 +16,3 @@
     </ClientOnly>
   </section>
 </template>
-
-<script setup lang="ts">
-import { useClientStripe } from '#imports'
-const { stripe, isLoading, loadStripe } = useClientStripe()
-</script>

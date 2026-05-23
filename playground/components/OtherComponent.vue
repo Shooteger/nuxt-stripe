@@ -1,16 +1,4 @@
-<template>
-  <section>
-    <h2>Stripe client OtherComponent</h2>
-    <code>
-      <div id="linkAuthenticationElement" />
-    </code>
-  </section>
-</template>
-
 <script setup lang="ts">
-import { useClientStripe } from "#imports";
-import { watch } from "vue";
-
 const { stripe } = useClientStripe();
 
 watch(
@@ -34,3 +22,13 @@ watch(
   { immediate: true }
 );
 </script>
+
+
+<template>
+  <section>
+    <h2>Stripe client OtherComponent</h2>
+    <code>
+      <div id="linkAuthenticationElement" />
+    </code>
+  </section>
+</template>
