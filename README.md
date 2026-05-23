@@ -162,7 +162,7 @@ If you want to control when Stripe loads (e.g. only on the checkout page), set `
 stripe: {
   client: {
     manualClientLoad: true,
-    key: process.env.STRIPE_PUBLISHABLE_KEY,
+    key: process.env.NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
   },
 }
 ```
