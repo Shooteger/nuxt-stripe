@@ -69,6 +69,16 @@ describe("@shooteger/nuxt-stripe Module", async () => {
     });
   });
 
+  describe("Payment API", () => {
+    it("handles Stripe errors gracefully", async () => {
+      const response = await $fetch<{ clientSecret: string | null; error: unknown }>("/api/create-payment-intent");
+
+      // With a fake secret key, Stripe will error — verify graceful handling
+      expect(response.clientSecret).toBeNull();
+      expect(response.error).toBeDefined();
+    });
+  });
+
   describe("Module configuration", () => {
     it("applies server key from module options", async () => {
       const response = await $fetch("/api/stripe");
