@@ -1,4 +1,5 @@
 {
+  "description": "Root TypeScript configuration — delegates to Nuxt-generated tsconfig files for each build target.",
   "files": [],
   "references": [
     {

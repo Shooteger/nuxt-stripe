@@ -16,15 +16,25 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * Playground entry point — Root application component.
+ *
+ * Demonstrates manual client-side Stripe loading with an explicit publishable key
+ * passed to `loadStripe()` rather than relying on auto-config.
+ */
 import { useNuxtApp, useClientStripe } from "#imports";
 
-// manualClientLoad: true is set in nuxt.config.ts
-// This means we control when and where Stripe loads instead of auto-loading on mount
+// Destructure the manual-load helpers from the client Stripe composable.
+// Because `manualClientLoad: true` is set in nuxt.config.ts, Stripe does NOT
+// auto-initialise on mount — we must call `loadStripe()` ourselves.
 const { loadStripe, stripe } = useClientStripe();
+
+// Access the Nuxt runtime app to read public runtime config values.
 const nuxtApp = useNuxtApp();
 
-// Pass publishableKey explicitly here since manualClientLoad bypasses auto-config
-// Remove the argument to use NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY from .env automatically
+// Explicitly pass the publishable key from the public runtime config.
+// When called without arguments, `loadStripe()` reads
+// `NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` from the environment automatically.
 stripe.value = await loadStripe(nuxtApp.$config.public.stripe.publishableKey);
 </script>
 

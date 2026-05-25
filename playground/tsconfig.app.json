@@ -1,4 +1,5 @@
 {
+  "description": "App-specific TypeScript overrides — resolves @shooteger/nuxt-stripe to the built type declarations.",
   "extends": "./.nuxt/tsconfig.app.json",
   "compilerOptions": {
     "paths": {

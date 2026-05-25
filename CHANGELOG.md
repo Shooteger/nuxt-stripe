@@ -1,62 +1,10 @@
 # Changelog
 
-## v3.0.0
-
-
-### 🚀 Enhancements
-
-- Make @stripe/stripe-js optional peer dependency ([cf01090](https://github.com/Shooteger/nuxt-stripe/commit/cf01090))
-- ⚠️  Rename key to secretKey/publishableKey, update playground and docs ([34cc31a](https://github.com/Shooteger/nuxt-stripe/commit/34cc31a))
-- Re-export Stripe types from module entry point ([3c0997f](https://github.com/Shooteger/nuxt-stripe/commit/3c0997f))
-
-### 🩹 Fixes
-
-- Correct LICENCE filename and styles in README link ([75b34fd](https://github.com/Shooteger/nuxt-stripe/commit/75b34fd))
-- Correct env var names in README (NUXT_STRIPE_SECRET_KEY / NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) ([f9b058f](https://github.com/Shooteger/nuxt-stripe/commit/f9b058f))
-- **useClientStripe:** Named export and correct env var in warning ([e424095](https://github.com/Shooteger/nuxt-stripe/commit/e424095))
-
-### 📖 Documentation
-
-- Fix docs grammar ([c3db8dc](https://github.com/Shooteger/nuxt-stripe/commit/c3db8dc))
-- Fix incorrect config key in client setup example ([4cb27fe](https://github.com/Shooteger/nuxt-stripe/commit/4cb27fe))
-- Update readme and description ([c0af205](https://github.com/Shooteger/nuxt-stripe/commit/c0af205))
-
-### 🏡 Chore
-
-- Initial release v1.0.0 ([3eff223](https://github.com/Shooteger/nuxt-stripe/commit/3eff223))
-- **release:** V1.0.1 ([564c218](https://github.com/Shooteger/nuxt-stripe/commit/564c218))
-- **release:** V1.1.0 ([b904549](https://github.com/Shooteger/nuxt-stripe/commit/b904549))
-- **release:** V1.1.1 ([af1c612](https://github.com/Shooteger/nuxt-stripe/commit/af1c612))
-- **release:** V2.0.0 ([3f40ab8](https://github.com/Shooteger/nuxt-stripe/commit/3f40ab8))
-- Bump package-lock.json to v2.0.0 ([933a7d3](https://github.com/Shooteger/nuxt-stripe/commit/933a7d3))
-- **release:** V2.0.1 ([d052f1d](https://github.com/Shooteger/nuxt-stripe/commit/d052f1d))
-- Bump package-lock.json to v2.0.1 ([9790449](https://github.com/Shooteger/nuxt-stripe/commit/9790449))
-- **release:** V2.0.2 ([2f22c90](https://github.com/Shooteger/nuxt-stripe/commit/2f22c90))
-- Improve package.json metadata ([eb85211](https://github.com/Shooteger/nuxt-stripe/commit/eb85211))
-- **release:** V2.0.3 ([82a66ee](https://github.com/Shooteger/nuxt-stripe/commit/82a66ee))
-- Improve package.json metadata ([99c8b37](https://github.com/Shooteger/nuxt-stripe/commit/99c8b37))
-- **release:** V2.1.0 ([d5f9e48](https://github.com/Shooteger/nuxt-stripe/commit/d5f9e48))
-- Add issue templates ([166c7f9](https://github.com/Shooteger/nuxt-stripe/commit/166c7f9))
-- Set engines node >=18.12.0, bump vitest to 4.1.7 ([759534c](https://github.com/Shooteger/nuxt-stripe/commit/759534c))
-
-### ✅ Tests
-
-- Add payment intent endpoint to fixture and error handling test ([4e92b56](https://github.com/Shooteger/nuxt-stripe/commit/4e92b56))
-
-#### ⚠️ Breaking Changes
-
-- ⚠️  Rename key to secretKey/publishableKey, update playground and docs ([34cc31a](https://github.com/Shooteger/nuxt-stripe/commit/34cc31a))
-
-### ❤️ Contributors
-
-- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
-- MP ([@Shooteger](https://github.com/Shooteger))
-
 ## v2.2.1
 
 ### 📖 Documentation
 
-- Update readme and description ([c0af205](https://github.com/Shooteger/nuxt-stripe/commit/c0af205))
+- Update language in `README.md`' to be more concise and clear
 
 ## v2.2.0
 

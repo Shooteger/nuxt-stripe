@@ -1,10 +1,11 @@
 {
-  "private": true,
-  "name": "@shooteger/nuxt-stripe-playground",
-  "type": "module",
-  "scripts": {
-    "dev": "nuxi dev",
-    "build": "nuxi build",
+  "private":      true,
+  "name":         "@shooteger/nuxt-stripe-playground",
+  "description":  "Development playground for @shooteger/nuxt-stripe. Tests Stripe server-side and client-side integration.",
+  "type":         "module",
+  "scripts":      {
+    "dev":      "nuxi dev",
+    "build":    "nuxi build",
     "generate": "nuxi generate"
   },
   "dependencies": {
