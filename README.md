@@ -1,4 +1,4 @@
-# A Nuxt 3/4 module for integrating Stripe
+# A Nuxt module for integrating Stripe
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
