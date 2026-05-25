@@ -4,7 +4,7 @@
 
 ### 📖 Documentation
 
-- Update language in `README.md`' to be more concise and clear
+- Update language in `README.md` to be more concise and clear
 
 ## v2.2.0
 
