@@ -1,6 +1,6 @@
 {
   "name":                 "@shooteger/nuxt-stripe",
-  "version":              "3.0.0",
+  "version":              "2.1.1",
   "description":          "Stripe integration for Nuxt — server-side and client-side composables for payments, Checkout, and Connect",
   "author":               {
     "name": "Maurice Putz",

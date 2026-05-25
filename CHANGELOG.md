@@ -4,7 +4,9 @@
 
 ### 📖 Documentation
 
-- Update language in `README.md`' to be more concise and clear
+- Update language in `README.md` to be more concise and clear
+- Added JSDoc and comments to `/src` and `/playground` for better readability and maintainability
+- Created placeholder `.env.example`
 
 ## v2.2.0
 
