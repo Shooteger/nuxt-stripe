@@ -1,4 +1,23 @@
 
+## v2.2.0
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.1.0...v2.2.0)
+
+### 📖 Documentation
+
+- Update readme and description ([c0af205](https://github.com/Shooteger/nuxt-stripe/commit/c0af205))
+
+### 🏡 Chore
+
+- Add issue templates ([166c7f9](https://github.com/Shooteger/nuxt-stripe/commit/166c7f9))
+- Set engines node >=18.12.0, bump vitest to 4.1.7 ([759534c](https://github.com/Shooteger/nuxt-stripe/commit/759534c))
+- Migrate to pnpm, update deps to nuxt 4.5.2 / vite 8 ([accca61](https://github.com/Shooteger/nuxt-stripe/commit/accca61))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+- MP ([@Shooteger](https://github.com/Shooteger))
+
 ## v2.1.0
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.0.3...v2.1.0)
