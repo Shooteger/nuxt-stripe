@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { defineNuxtModule, createResolver } from "@nuxt/kit";
+import type { NuxtModule } from "@nuxt/schema";
 import defu from "defu";
 import type Stripe from "stripe";
 import type { StripeConstructorOptions } from "@stripe/stripe-js";
@@ -23,7 +24,7 @@ export interface ModuleOptions {
   client: ClientStripeOptions & { manualClientLoad?: boolean };
 }
 
-export default defineNuxtModule<ModuleOptions>({
+const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   meta: {
     name: "@shooteger/nuxt-stripe",
     configKey: "stripe",
@@ -68,5 +69,7 @@ export default defineNuxtModule<ModuleOptions>({
     });
   },
 });
+
+export default module;
 
 export * from './types'

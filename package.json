@@ -50,15 +50,13 @@
   "files": [
     "dist"
   ],
-  "workspaces": [
-    "playground"
-  ],
+  "packageManager": "pnpm@11.23.0",
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "npm run dev:prepare && nuxi dev playground",
+    "dev": "pnpm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare test/fixtures/basic",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen --release && pnpm publish && git push --follow-tags",
     "lint": "eslint .",
     "test": "nuxi prepare test/fixtures/basic && vitest run",
     "test:watch": "nuxi prepare test/fixtures/basic && vitest watch",
@@ -78,24 +76,24 @@
     }
   },
   "devDependencies": {
-    "@nuxt/devtools": "^3.2.4",
-    "@nuxt/eslint-config": "^1.15.2",
-    "@nuxt/kit": "^4.4.6",
-    "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.4.6",
-    "@nuxt/test-utils": "^4.0.3",
-    "@stripe/stripe-js": "^9.6.0",
-    "@types/node": "^22.19.9",
+    "@nuxt/devtools": "^3.4.1",
+    "@nuxt/eslint-config": "^1.17.0",
+    "@nuxt/kit": "^4.5.2",
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.5.2",
+    "@nuxt/test-utils": "^4.1.0",
+    "@stripe/stripe-js": "^9.14.0",
+    "@types/node": "^26.3.0",
     "changelogen": "^0.6.2",
-    "eslint": "^10.3.0",
-    "nuxt": "^4.4.6",
-    "stripe": "^22.1.1",
+    "eslint": "^10.9.0",
+    "nuxt": "^4.5.2",
+    "stripe": "^22.5.0",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.5",
-    "vue": "^3.5.0",
-    "vue-tsc": "^3.2.8"
+    "vitest": "^4.1.11",
+    "vue": "^3.5.41",
+    "vue-tsc": "^3.3.11"
   },
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=22.19.0"
   }
 }

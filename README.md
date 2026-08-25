@@ -76,13 +76,13 @@ export default defineNuxtConfig({
   modules: ["@shooteger/nuxt-stripe"],
   stripe: {
     server: {
-      // key is read from NUXT_STRIPE_SECRET_KEY automatically
+      // secretKey is read from NUXT_STRIPE_SECRET_KEY automatically
       options: {
         // https://github.com/stripe/stripe-node#configuration
       },
     },
     client: {
-      // key is read from NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY automatically
+      // publishableKey is read from NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY automatically
       options: {
         // https://stripe.com/docs/js/initializing#init_stripe_js-options
       },
@@ -99,12 +99,12 @@ export default defineNuxtConfig({
   modules: ["@shooteger/nuxt-stripe"],
   runtimeConfig: {
     stripe: {
-      key: "", // NUXT_STRIPE_SECRET_KEY
+      secretKey: "", // NUXT_STRIPE_SECRET_KEY
       options: {},
     },
     public: {
       stripe: {
-        key: "", // NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        publishableKey: "", // NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
         options: {},
       },
     },
@@ -178,7 +178,7 @@ If you want to control when Stripe loads (e.g. only on the checkout page), set `
 stripe: {
   client: {
     manualClientLoad: true,
-    key: process.env.NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    publishableKey: process.env.NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
   },
 }
 ```
@@ -208,29 +208,52 @@ watch(stripe, async () => {
 </script>
 ```
 
+## Migration
+
+### v1.x → v2.x
+
+The only breaking change is the naming of the keys. In v1 both the server and the client key were just called `key`, which was confusing. Since v2 they are called what they actually are: `secretKey` on the server and `publishableKey` on the client.
+
+In v1 you also had to wire the env variables yourself via `process.env` in the config. Since v2, Nuxt picks the keys up automatically from `NUXT_STRIPE_SECRET_KEY` and `NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` — no `process.env` in the config needed anymore.
+
+| | v1 | v2 |
+| --- | --- | --- |
+| Server key (module option / runtime config) | `server.key` | `server.secretKey` |
+| Client key (module option / runtime config) | `client.key` | `client.publishableKey` |
+| Server env variable | `STRIPE_SECRET_KEY` (manually via `process.env`) | `NUXT_STRIPE_SECRET_KEY` (picked up automatically) |
+| Client env variable | `STRIPE_PUBLISHABLE_KEY` (manually via `process.env`) | `NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (picked up automatically) |
+
+**To upgrade:**
+
+1. Update the package: `npm install @shooteger/nuxt-stripe@latest`
+2. In your `.env` (and on your hosting provider), rename `STRIPE_SECRET_KEY` to `NUXT_STRIPE_SECRET_KEY` and `STRIPE_PUBLISHABLE_KEY` to `NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`.
+3. In your `nuxt.config.ts`, remove the `key: process.env...` lines — the keys are now read from the env variables automatically. If you still want to set them in the config, use the new names `secretKey` / `publishableKey`.
+
+That's it. The composables `useServerStripe(event)` and `useClientStripe()` work exactly the same as in v1, no code changes needed there.
+
 ## Development
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Prepare dev environment (run this first)
-npm run dev:prepare
+pnpm dev:prepare
 
 # Start playground
-npm run dev
+pnpm dev
 
 # Build module
-npm run prepack
+pnpm prepack
 
 # Run tests
-npm run test
+pnpm test
 
 # Lint
-npm run lint
+pnpm lint
 
 # Release
-npm run release
+pnpm release
 ```
 
 ## License
