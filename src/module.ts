@@ -1,10 +1,9 @@
 import { fileURLToPath } from "node:url";
-import { defineNuxtModule, createResolver } from "@nuxt/kit";
+import { defineNuxtModule, createResolver, addServerImports, addTypeTemplate } from "@nuxt/kit";
 import type { NuxtModule } from "@nuxt/schema";
 import defu from "defu";
 import type Stripe from "stripe";
 import type { StripeConstructorOptions } from "@stripe/stripe-js";
-import type { NitroOptions } from 'nitropack'
 
 type StripeConfig = ConstructorParameters<typeof Stripe>[1];
 
@@ -39,13 +38,17 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
-    nuxt.options.runtimeConfig.public.stripe = defu(
-      nuxt.options.runtimeConfig.public.stripe as Partial<ClientStripeOptions>,
+    // Written through untyped views: the RuntimeConfig type Nuxt generates for the consuming app
+    // is derived from that app's config, so assigning to it directly does not type-check there.
+    const publicConfig = nuxt.options.runtimeConfig.public as Record<string, unknown>;
+    publicConfig.stripe = defu(
+      publicConfig.stripe as Partial<ClientStripeOptions> | undefined,
       options.client
     );
 
-    nuxt.options.runtimeConfig.stripe = defu(
-      nuxt.options.runtimeConfig.stripe as Partial<ServerStripeOptions>,
+    const privateConfig = nuxt.options.runtimeConfig as Record<string, unknown>;
+    privateConfig.stripe = defu(
+      privateConfig.stripe as Partial<ServerStripeOptions> | undefined,
       options.server
     );
 
@@ -56,16 +59,34 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       dirs.push(resolve(runtimeDir, "composables"));
     });
 
-    nuxt.options.typescript.tsConfig.include?.push('./types/stripe-module.d.ts')
+    // Registered on nuxt.options.alias (not only in Nitro) so the alias also lands in every
+    // generated tsconfig — Nuxt 4's app tsconfig type-checks server routes for typed $fetch.
+    nuxt.options.alias["#stripe/server"] = resolve(runtimeDir, "server/services");
 
-    // @ts-expect-error - nitro:config not in NuxtHooks type but exists at runtime
-    nuxt.hook('nitro:config', (nitroConfig: NitroOptions) => {
-      nitroConfig.alias = nitroConfig.alias || {};
-      nitroConfig.externals = defu(
-        typeof nitroConfig.externals === "object" ? nitroConfig.externals : {},
+    addServerImports([
+      { name: "useServerStripe", from: resolve(runtimeDir, "server/services/useServerStripe") },
+    ]);
+
+    addTypeTemplate({
+      filename: "types/nuxt-stripe.d.ts",
+      getContents: () => `declare module 'h3' {
+  interface H3EventContext {
+    /** Per-request Stripe instance cached by useServerStripe() */
+    _stripe?: import('stripe').default
+  }
+}
+
+export {}
+`,
+    }, { nitro: true, nuxt: true });
+
+    nuxt.hook("nitro:config", (nitroConfig) => {
+      // `externals` is only typed when nitropack's types resolve, so don't depend on them here
+      const config = nitroConfig as { externals?: unknown };
+      config.externals = defu(
+        config.externals && typeof config.externals === "object" ? config.externals as Record<string, unknown> : {},
         { inline: [resolve("./runtime")] }
       );
-      nitroConfig.alias["#stripe/server"] = resolve(runtimeDir, "./server/services");
     });
   },
 });

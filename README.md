@@ -118,6 +118,8 @@ export default defineNuxtConfig({
 
 Use `useServerStripe(event)` inside any server route or API handler. The Stripe instance is cached per request context, so it is only initialized once per request.
 
+`useServerStripe` is synchronous (no `await` needed) and auto-imported in your `server/` directory. The explicit `import { useServerStripe } from "#stripe/server"` keeps working too, and `#stripe/server` resolves in all generated tsconfigs, including the app one Nuxt 4 uses for typed `$fetch`.
+
 ```ts
 // server/api/payment-intent.get.ts
 import { defineEventHandler } from "h3";

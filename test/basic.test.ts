@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { describe, it, expect } from "vitest";
-import { setup, $fetch } from "@nuxt/test-utils";
+import { setup, $fetch, fetch } from "@nuxt/test-utils";
 
 describe("@shooteger/nuxt-stripe Module", async () => {
   await setup({
@@ -9,10 +9,12 @@ describe("@shooteger/nuxt-stripe Module", async () => {
 
   describe("SSR", () => {
     it("renders the page without errors", async () => {
-      const html = await $fetch<string>("/");
+      const response = await fetch("/");
+      const html = await response.text();
 
+      expect(response.status).toBe(200);
       expect(html).toContain("<!DOCTYPE html>");
-      expect(html).not.toContain("500");
+      expect(html).toContain("Nuxt Stripe module test");
       expect(html).not.toContain("Error");
     });
 
@@ -67,6 +69,13 @@ describe("@shooteger/nuxt-stripe Module", async () => {
 
       expect(r1.version).toBe(r2.version);
     });
+
+    it("is auto-imported in server routes and cached on event.context", async () => {
+      const response = await $fetch<{ version: string; cached: boolean }>("/api/auto-import");
+
+      expect(response.version).toMatch(/^\d+\.\d+\.\d+$/);
+      expect(response.cached).toBe(true);
+    });
   });
 
   describe("Payment API", () => {
@@ -94,22 +103,14 @@ describe("@shooteger/nuxt-stripe Module", async () => {
     });
   });
 
-  describe("Type re-exports", () => {
-    it("exports ServerStripe type from module", async () => {
-      // @ts-expect-error - dynamic source import, type checked via test:types
-      const { default: mod } = await import("../../../src/module");
+  describe("Module definition", () => {
+    it("exposes its meta (type exports are checked in test/types/exports.test-d.ts)", async () => {
+      const { default: mod } = await import("../src/module");
 
-      // If the module loaded without errors, type exports compiled correctly
-      expect(mod).toBeDefined();
-    });
-
-    it("exports are resolvable from dist types", async () => {
-      // This is a compile-time check — if this file type-checks, the re-exports work.
-      // The actual runtime assertion is just a sanity check.
-      // @ts-expect-error - dynamic source import, type checked via test:types
-      const types = await import("../../../src/types");
-
-      expect(types).toBeDefined();
+      expect(await mod.getMeta?.()).toMatchObject({
+        name: "@shooteger/nuxt-stripe",
+        configKey: "stripe",
+      });
     });
   });
 });
