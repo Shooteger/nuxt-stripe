@@ -78,20 +78,20 @@
   "devDependencies": {
     "@nuxt/devtools": "^3.4.1",
     "@nuxt/eslint-config": "^1.17.0",
-    "@nuxt/kit": "^4.5.2",
+    "@nuxt/kit": "^4.6.2",
     "@nuxt/module-builder": "^1.0.3",
-    "@nuxt/schema": "^4.5.2",
-    "@nuxt/test-utils": "^4.1.0",
-    "@stripe/stripe-js": "^9.14.0",
-    "@types/node": "^26.3.0",
+    "@nuxt/schema": "^4.6.2",
+    "@nuxt/test-utils": "^4.3.4",
+    "@stripe/stripe-js": "^10.1.0",
+    "@types/node": "^26.6.5",
     "changelogen": "^0.6.2",
-    "eslint": "^10.9.0",
-    "nuxt": "^4.5.2",
-    "stripe": "^22.5.0",
+    "eslint": "^10.13.0",
+    "nuxt": "^4.6.2",
+    "stripe": "^23.0.0",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.11",
-    "vue": "^3.5.41",
-    "vue-tsc": "^3.3.11"
+    "vitest": "^5.0.5",
+    "vue": "^3.5.44",
+    "vue-tsc": "^3.3.13"
   },
   "engines": {
     "node": ">=22.19.0"
