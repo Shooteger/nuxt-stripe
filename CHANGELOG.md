@@ -1,4 +1,16 @@
 
+## v2.2.1
+
+[compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.2.0...v2.2.1)
+
+### 🩹 Fixes
+
+- **types:** Export a real ServerStripe type and improve server DX ([43e251c](https://github.com/Shooteger/nuxt-stripe/commit/43e251c))
+
+### ❤️ Contributors
+
+- Maurice Putz ([@Shooteger](https://github.com/Shooteger))
+
 ## v2.2.0
 
 [compare changes](https://github.com/Shooteger/nuxt-stripe/compare/v2.1.0...v2.2.0)
